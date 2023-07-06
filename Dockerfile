@@ -7,9 +7,6 @@ COPY src /tmp/src/
 RUN mvn package
 
 #pull base image
-
-FROM openjdk
-
 EXPOSE 8080
 WORKDIR /tmp/
 
