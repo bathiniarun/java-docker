@@ -1,5 +1,5 @@
 # Use a base image with Java installed
-FROM docker pull maven:3.6.3-openjdk-8
+FROM maven:3.6.3-openjdk-8
 
 # Set the working directory inside the container
 WORKDIR /ipl
