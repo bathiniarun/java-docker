@@ -1,8 +1,12 @@
 # Use a base image with Java installed
 FROM maven:3.6.3-openjdk-8
 
+
+
 # Set the working directory inside the container
 WORKDIR /ipl
+
+RUN mvn clean install
 
 # Copy the application JAR file into the container
 COPY target/ipl.jar .
