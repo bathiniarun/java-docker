@@ -1,5 +1,5 @@
 # Use a base image with Java installed
-FROM maven:3.2.3-jdk-8
+FROM maven:3.6.3-openjdk-8
 
 RUN mvn clean install
 
