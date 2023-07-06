@@ -1,17 +1,19 @@
 FROM maven:3.6.3-openjdk-8
 
-COPY pom.xml /tmp/
+WORKDIR /bem
 
-COPY src /tmp/src/
+copy . .
 
-RUN mvn package
+RUN mvn install
 
-#pull base image
+RUN mvn run build
+
+FROM tomcat
+
+
 EXPOSE 8080
-WORKDIR /tmp/
 
-#copy hello world to docker image from builder image
-COPY . .
+COPY --FROM=builderstage /bem/target/sample-1.0.3.jar /bem.jar
 
-#default command
-CMD ["java", "-jar", "/data/sample-1.0.3.jar"]
+ENTRYPOINT ["java" , "jar", "/bem.jar" ]
+
