@@ -1,19 +1,14 @@
-FROM maven:3.6.3-openjdk-8
+# Use a base image with Java installed
+FROM docker pull maven:3.6.3-openjdk-8
 
-WORKDIR /bem
+# Set the working directory inside the container
+WORKDIR /ipl
 
-copy . .
+# Copy the application JAR file into the container
+COPY target/ipl.jar .
 
-RUN mvn install
-
-RUN mvn run build
-
-FROM tomcat
-
-
+# Expose the port on which your application listens
 EXPOSE 8080
 
-COPY --FROM=builderstage /bem/target/sample-1.0.3.jar /bem.jar
-
-ENTRYPOINT ["java" , "jar", "/bem.jar" ]
-
+# Set the command to run your application
+CMD ["java", "-jar", "ipl.jar"]
