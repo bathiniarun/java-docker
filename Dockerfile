@@ -1,12 +1,12 @@
 # Use a base image with Java installed
-FROM maven:3.2.2-jdk-8
+FROM maven:3.2.2-jdk-1.8
 
-
+RUN mvn clean install
 
 # Set the working directory inside the container
 WORKDIR /ipl
 
-RUN mvn clean install
+
 
 # Copy the application JAR file into the container
 COPY target/ipl.jar .
